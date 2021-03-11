@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './gradlew clean test -Dcucumber.options="/src/test/resources/Features/login.feature"'
+                //sh './gradlew clean test -Dcucumber.options="/src/test/resources/Features/login.feature"'
+                sh './gradlew clean build'
             }
         }
         stage('Unit Test Reports') {
@@ -44,7 +45,7 @@ pipeline {
         }
         stage('API RestAssured Test') {
             steps {
-                sh './gradlew clean test -DsuiteXmlFile="/APITest/testng.xml"'
+                sh './gradlew clean test -DsuiteXmlFile="${env.WORKSPACE}/APITest/testng.xml"'
             }
         }
         stage('API RestAssured Test Reports') {
