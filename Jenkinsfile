@@ -44,7 +44,7 @@ pipeline {
         }
         stage('API RestAssured Test') {
             steps {
-                sh './gradlew clean test -DsuiteXmlFile=testng.xml '
+                sh './gradlew clean test -DsuiteXmlFile="/APITest/testng.xml"'
             }
         }
         stage('API RestAssured Test Reports') {
