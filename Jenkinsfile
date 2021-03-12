@@ -3,32 +3,36 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Smoke Test') {
             steps {
-                //sh './gradlew clean test -Dcucumber.options="/src/test/resources/Features/login.feature"'
-                sh './gradlew clean build'
+                sh './gradlew clean test -Dcucumber.options="SmokeTest/Features/Smoke.features"'
+                //sh './gradlew clean build'
             }
         }
-        stage('Unit Test Reports') {
+        stage('Smoke Test Reports') {
             steps {
-                publishHTML (target: [
+                /*publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
                 reportDir: 'target/JSONReports',
                 reportFiles: 'Reports.json',
                 reportName: "Unit Test Report"
-                ])
+                ])*/
+                
+                cucumber buildStatus: 'UNSTABLE',
+                reportTitle: 'Smoke Test',
+                fileIncludePattern: '**.json'
             }
         }
-        stage('Sanity check') {
+        /*stage('check') {
             steps {
                 input "Does the staging environment look ok?"
             }
-        }
+        }*/
         stage('Feature Test') {
             steps {
-                sh './gradlew test -Dcucumber.options="/FeatureTest/Features/login.feature"'
+                sh './gradlew test -Dcucumber.options="SanityTest/Features/Sanity.feature"'
             }
         }
         stage('Feature Test Reports') {
@@ -37,13 +41,13 @@ pipeline {
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
-                reportDir: 'target/HTMLReports',
-                reportFiles: 'Reports.html',
-                reportName: "Feature Test Report"
+                reportDir: 'target/SanityTest',
+                reportFiles: 'SanityReports.xml',
+                reportName: "Sanity Test"
                 ])
             }
         }
-        stage('API RestAssured Test') {
+        /*stage('API RestAssured Test') {
             steps {
                 sh './gradlew clean test -DsuiteXmlFile="${env.WORKSPACE}/APITest/testng.xml"'
             }
@@ -59,11 +63,17 @@ pipeline {
                 reportName: "API RestAssured Test Report"
                 ])
             }
+        }*/
+        
+        stage('check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
         }
     }
     
     post {
-        unsuccessful {
+        always {
             cleanWs()
         }
     }
