@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features="FeatureTest/Features", glue={"StepDefinitions"},
-	plugin = {"pretty", "junit:target/JUNITReports/Reports.xml"},
+	plugin = {"pretty", "junit:target/JUNITReports.xml"},
 	tags = "@SmokeTest")
 public class TestRunner {
 
