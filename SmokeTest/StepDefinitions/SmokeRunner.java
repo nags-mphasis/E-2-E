@@ -1,4 +1,4 @@
-package StepDefinitions;
+package SmokeTest.StepDefinitions;
 
 import org.junit.runner.RunWith;
 
@@ -10,8 +10,9 @@ import io.cucumber.junit.CucumberOptions;
 // plugin = {"pretty", "junit:target/JunitReports/Reports.xml"}
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="FeatureTest/Features", glue={"StepDefinitions"},
-	plugin = {"pretty", "junit:target/JUNITReports.xml"},
+@CucumberOptions(features="SmokeTest/Features", glue={"SmokeTest/StepDefinitions"},
+	monochrome = true,
+	plugin = {"pretty", "json:target/SmokeTest/Reports.json"},
 	tags = "@SmokeTest")
 public class TestRunner {
 

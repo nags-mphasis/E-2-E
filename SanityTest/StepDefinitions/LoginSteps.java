@@ -1,4 +1,4 @@
-package StepDefinitions;
+package SanityTest.StepDefinitions;
 
 import io.cucumber.java.en.*;
 

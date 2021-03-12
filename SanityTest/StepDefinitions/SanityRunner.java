@@ -1,4 +1,4 @@
-package StepDefinitions;
+package SanityTest.StepDefinitions;
 
 import org.junit.runner.RunWith;
 
@@ -10,14 +10,10 @@ import io.cucumber.junit.CucumberOptions;
 // plugin = {"pretty", "junit:target/JunitReports/Reports.xml"}
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src/test/resources/Features", glue={"StepDefinitions"},
-	monochrome = true,
-	plugin = {"pretty", "json:target/JSONReports/Reports.json",
-		"pretty", "html:target/HTMLReports/Reports.html"}
-	//	"pretty", "junit:target/JunitReports/Reports.xml"
-	//}
-	// tags = "@SmokeTest"
-	)
+@CucumberOptions(features="SanityTest/Features", glue={"SanityTest/StepDefinitions"},
+    monochrome = true,
+	plugin = {"pretty", "junit:target/SanityTest/SanityReports.xml"},
+	tags = "@SanityTest")
 public class TestRunner {
 
 }

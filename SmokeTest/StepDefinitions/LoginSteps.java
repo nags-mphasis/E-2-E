@@ -1,4 +1,4 @@
-package StepDefinitions;
+package SmokeTest.StepDefinitions;
 
 import io.cucumber.java.en.*;
 
