@@ -12,7 +12,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(features="SanityTest/Features", glue={"SanityTest/StepDefinitions"},
     monochrome = true,
-	plugin = {"pretty", "junit:target/SanityTest/SanityReports.xml"},
+	plugin = {"pretty", "html:target/SanityTest/SanityReports.html"},
 	tags = "@SanityTest")
 public class TestRunner {
 
