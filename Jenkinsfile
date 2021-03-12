@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Smoke Test') {
+        /*stage('Smoke Test') {
             steps {
                 sh './gradlew clean test -Dcucumber.options="SmokeTest/Features/Smoke.features"'
                 //sh './gradlew clean build'
@@ -11,21 +11,21 @@ pipeline {
         }
         stage('Smoke Test Reports') {
             steps {
-                /*publishHTML (target: [
+                publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
                 reportDir: 'target/JSONReports',
                 reportFiles: 'Reports.json',
                 reportName: "Unit Test Report"
-                ])*/
+                ])
                 
                 cucumber buildStatus: 'UNSTABLE',
                 reportTitle: 'Smoke Test',
-                fileIncludePattern: '**.json'
+                fileIncludePattern: '**//*.json'
             }
         }
-        /*stage('check') {
+        stage('check') {
             steps {
                 input "Does the staging environment look ok?"
             }
@@ -42,7 +42,7 @@ pipeline {
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
                 reportDir: 'target/SanityTest',
-                reportFiles: 'SanityReports.xml',
+                reportFiles: 'SanityReports.html',
                 reportName: "Sanity Test"
                 ])
             }
