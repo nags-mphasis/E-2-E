@@ -30,7 +30,7 @@ pipeline {
                 input "Does the staging environment look ok?"
             }
         }*/
-        stage('Feature Test') {
+        stage('Sanity Test') {
             steps {
                 sh './gradlew test -Dcucumber.options="SanityTest/Features/Sanity.feature"'
             }
