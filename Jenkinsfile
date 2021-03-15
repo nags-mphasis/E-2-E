@@ -32,7 +32,7 @@ pipeline {
         }*/
         stage('Sanity Test') {
             steps {
-                sh './gradlew test -Dcucumber.options="SanityTest/Features/Sanity.feature"'
+                sh './gradlew clean test -Dcucumber.options="SanityTest/Features/Sanity.feature"'
             }
         }
         stage('Feature Test Reports') {
