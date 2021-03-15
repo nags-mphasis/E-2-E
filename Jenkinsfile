@@ -25,7 +25,7 @@ pipeline {
                 fileIncludePattern: '**/*.json'
             }
         }
-        stage('check') {
+        stage('First check') {
             steps {
                 input "Does the staging environment look ok?"
             }
@@ -47,25 +47,8 @@ pipeline {
                 ])
             }
         }
-        /*stage('API RestAssured Test') {
-            steps {
-                sh './gradlew clean test -DsuiteXmlFile="${env.WORKSPACE}/APITest/testng.xml"'
-            }
-        }
-        stage('API RestAssured Test Reports') {
-            steps {
-                publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'build/reports/tests/test',
-                reportFiles: 'index.html',
-                reportName: "API RestAssured Test Report"
-                ])
-            }
-        }*/
         
-        stage('check') {
+        stage('Second check') {
             steps {
                 input "Does the staging environment look ok?"
             }
