@@ -14,6 +14,6 @@ import io.cucumber.junit.CucumberOptions;
     monochrome = true,
 	plugin = {"pretty", "html:target/SanityTest"},
 	tags = "@SanityTest")
-public class TestRunner {
+public class SanityRunner {
 
 }
